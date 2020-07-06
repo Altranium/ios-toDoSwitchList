@@ -8,7 +8,12 @@
 
 import Foundation
 
-class ToDo {
-    var name = ""
-    var isOn = false
+struct ToDo {
+    var name: String
+    var isOn: Bool
+
+    init(name: String, isOn: Bool = false) {
+        self.name = name
+        self.isOn = isOn
+    }
 }

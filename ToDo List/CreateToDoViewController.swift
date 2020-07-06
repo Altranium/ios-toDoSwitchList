@@ -9,7 +9,7 @@
 import UIKit
 
 class CreateToDoViewController: UIViewController {
-    
+
     @IBOutlet weak var nameTextField: UITextField!
     var toDoTableVC : ToDoTableViewController? = nil
     
@@ -18,13 +18,11 @@ class CreateToDoViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
+
 
     @IBAction func addTapped(_ sender: Any) {
-        let newToDo = ToDo()
         if let name =  nameTextField.text {
-            newToDo.name = name
-            newToDo.isOn = true
+            let newToDo = ToDo(name: name, isOn: true)
             toDoTableVC?.toDos.append(newToDo)
             toDoTableVC?.tableView.reloadData()
             navigationController?.popViewController(animated: true)
