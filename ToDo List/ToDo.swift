@@ -10,5 +10,5 @@ import Foundation
 
 class ToDo {
     var name = ""
-    var important = false
+    var isOn = false
 }

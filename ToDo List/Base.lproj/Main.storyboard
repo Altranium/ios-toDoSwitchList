@@ -3,10 +3,11 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--To Do Table View Controller-->
         <scene sceneID="n5H-Ud-bOX">
             <objects>
                 <tableViewController id="Ypr-Tq-YGt" customClass="ToDoTableViewController" customModule="ToDo_List" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UWy-7N-VTE">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UWy-7N-VTE" customClass="ToDoTableViewCell" customModule="ToDo_List" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UWy-7N-VTE" id="lqh-5m-puv">
@@ -29,8 +30,16 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5N-nb-4Ve">
+                                            <rect key="frame" x="345" y="6" width="49" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </switch>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="toDoLabel" destination="nhr-u2-FYQ" id="ulZ-oc-kHs"/>
+                                    <outlet property="toDoSwitch" destination="c5N-nb-4Ve" id="FcP-7R-6rg"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -38,11 +47,100 @@
                             <outlet property="delegate" destination="Ypr-Tq-YGt" id="MM2-eD-GoC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="0M2-H2-qAB"/>
+                    <navigationItem key="navigationItem" id="0M2-H2-qAB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6Zi-F5-TDI">
+                            <connections>
+                                <segue destination="X2t-qd-aoP" kind="show" id="vB4-My-kfA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="n9f-qC-hXR" kind="show" identifier="goToComplete" id="nMn-2f-BX0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wjm-Se-QXe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="215" y="109"/>
+        </scene>
+        <!--Complete View Controller-->
+        <scene sceneID="jgC-pG-hQM">
+            <objects>
+                <viewController id="n9f-qC-hXR" customClass="CompleteViewController" customModule="ToDo_List" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fmn-gp-fQc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chD-3R-cPI">
+                                <rect key="frame" x="145" y="170" width="126" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Complete"/>
+                                <connections>
+                                    <action selector="completeTapped:" destination="n9f-qC-hXR" eventType="touchUpInside" id="1CM-i6-fKA"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMH-B6-bCf">
+                                <rect key="frame" x="20" y="120" width="374" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ZY3-uI-VVh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VPK-VS-0sz">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="4uG-lQ-4sc"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="toDoLabel" destination="BMH-B6-bCf" id="Uvt-J4-KRp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ATt-Hu-NGq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="213.04347826086959" y="876.5625"/>
+        </scene>
+        <!--Create To Do View Controller-->
+        <scene sceneID="owN-6h-x7l">
+            <objects>
+                <viewController id="X2t-qd-aoP" customClass="CreateToDoViewController" customModule="ToDo_List" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QBz-On-cz4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ToDo Task:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSq-NH-XDW">
+                                <rect key="frame" x="125" y="102" width="164" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Walk the walk" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mei-X3-By2">
+                                <rect key="frame" x="82" y="152" width="250" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="LfW-hO-8TE"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bAP-fh-CBq">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="mak-Oc-mRa"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="qOW-6f-NqP">
+                            <connections>
+                                <action selector="addTapped:" destination="X2t-qd-aoP" id="E4T-xe-NXG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="Mei-X3-By2" id="2Cw-8H-N55"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="naB-3T-xQV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1234.7826086956522" y="107.8125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4Na-d7-aJI">
