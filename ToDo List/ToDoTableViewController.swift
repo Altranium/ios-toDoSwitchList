@@ -14,23 +14,14 @@ class ToDoTableViewController: UITableViewController {
     @IBOutlet weak var toDoSwitch: UISwitch!
     
     var toDos : [ToDo] = []
-    var toDoNames : [String] = []
-    var toDoSwitches : [Bool] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let toDo1 = ToDo()
-        toDo1.name = "Walk"
-        toDo1.isOn = true
-        
-        let toDo2 = ToDo()
-        toDo2.name = "Run"
-        toDo2.isOn = false
-        
+        let toDo1 = ToDo(name: "Walk", isOn: true)
+        let toDo2 = ToDo(name: "Run")
+
         toDos = [toDo1,toDo2]
-        toDoNames = [toDo1.name, toDo2.name]
-        toDoSwitches = [toDo1.isOn, toDo2.isOn]
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,26 +30,14 @@ class ToDoTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-//      Link to Prototype Cell class
-         
-//        let cellIdentifier = "Cell"
-//        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ToDoTableViewCell
-//        cell.toDoLabel.text = toDoNames[indexPath.row]
-//        cell.toDoSwitch.isOn = toDoSwitches[indexPath.row]
-         
-        
-        
-        
-        let cell = UITableViewCell()
-
+        let cellIdentifier = "ToDoCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ToDoTableViewCell
         let toDo = toDos[indexPath.row]
+        let prefix = toDo.isOn ? "❗️" : ""
+        let toDoText = "\(prefix)\(toDo.name)"
 
-        if toDo.isOn {
-            cell.textLabel?.text = "❗️" + toDo.name
-        } else {
-            cell.textLabel?.text = toDo.name
-        }
+        cell.toDoLabel.text = toDoText
+        cell.toDoSwitch.isOn = toDo.isOn
 
         return cell
     }
@@ -80,5 +59,4 @@ class ToDoTableViewController: UITableViewController {
             }
         }
     }
-    
 }

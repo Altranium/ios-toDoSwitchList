@@ -11,7 +11,7 @@ import UIKit
 class CompleteViewController: UIViewController {
     
     @IBOutlet weak var toDoLabel: UILabel!
-    var toDo = ToDo()
+    var toDo: ToDo!
     var toDoTableVC : ToDoTableViewController? = nil
     
     override func viewDidLoad() {
